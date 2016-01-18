@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="synder, node.js, javascript, linux, golang" />
+  <meta name="keywords" content="linux,network," />
 
 
 
@@ -57,16 +57,28 @@
 
 
 
-<meta name="description" content="Noder">
+<meta name="description" content="定义和用法ifconfig命令常用来显示,配置系统中的网络接口（网卡）信息，如激活、关闭、设置地址等。
+在Linux系统中，网卡命名规律：eth0为第一块以太网卡（Ethernet Card），eth1为第二块。
+语法1. ifconfig [网络设备] [省略x个参数]
+例子 1ifconfig 如果不接任何参数，就会输出当前网络接口的情况
+1. [root@localhost ~]\# ifc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ifconfig">
+<meta property="og:title" content="netstat 命令详解">
 <meta property="og:url" content="https://synder.github.com/2016/01/18/ifconfig/index.html">
 <meta property="og:site_name" content="Synder">
-<meta property="og:description" content="Noder">
-<meta property="og:updated_time" content="2016-01-18T14:22:23.000Z">
+<meta property="og:description" content="定义和用法ifconfig命令常用来显示,配置系统中的网络接口（网卡）信息，如激活、关闭、设置地址等。
+在Linux系统中，网卡命名规律：eth0为第一块以太网卡（Ethernet Card），eth1为第二块。
+语法1. ifconfig [网络设备] [省略x个参数]
+例子 1ifconfig 如果不接任何参数，就会输出当前网络接口的情况
+1. [root@localhost ~]\# ifc">
+<meta property="og:updated_time" content="2016-01-18T14:23:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ifconfig">
-<meta name="twitter:description" content="Noder">
+<meta name="twitter:title" content="netstat 命令详解">
+<meta name="twitter:description" content="定义和用法ifconfig命令常用来显示,配置系统中的网络接口（网卡）信息，如激活、关闭、设置地址等。
+在Linux系统中，网卡命名规律：eth0为第一块以太网卡（Ethernet Card），eth1为第二块。
+语法1. ifconfig [网络设备] [省略x个参数]
+例子 1ifconfig 如果不接任何参数，就会输出当前网络接口的情况
+1. [root@localhost ~]\# ifc">
 
 
 
@@ -84,7 +96,7 @@
   };
 </script>
 
-  <title> ifconfig | Synder </title>
+  <title> netstat 命令详解 | Synder </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -234,7 +246,7 @@
             
             
               
-                ifconfig
+                netstat 命令详解
               
             
           </h1>
@@ -246,11 +258,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-18T22:22:23+08:00" content="2016-01-18">
+            <time itemprop="dateCreated" datetime="2016-01-18T15:14:34+08:00" content="2016-01-18">
               2016-01-18
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -272,11 +303,42 @@
       
 
       
-        
+        <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>ifconfig命令常用来显示,配置系统中的网络接口（网卡）信息，如激活、关闭、设置地址等。</p>
+<p>在Linux系统中，网卡命名规律：eth0为第一块以太网卡（Ethernet Card），eth1为第二块。</p>
+<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. ifconfig [网络设备] [省略x个参数]
+</code></pre><h2 id="u4F8B_u5B50_1"><a href="#u4F8B_u5B50_1" class="headerlink" title="例子 1"></a>例子 1</h2><p>ifconfig 如果不接任何参数，就会输出当前网络接口的情况</p>
+<pre><code>1. [root@localhost ~]\# ifconfig
+</code></pre><p>运行结果：</p>
+<pre><code>1. eth0
+2. Link encap:Ethernet HWaddr 00:C0:9F:94:78:0E
+3. inet addr:192.168.1.88 Bcast:192.168.1.255 Mask:255.255.255.0
+4. inet6 addr: fe80::2c0:9fff:fe94:780e/64 Scope:Link
+5. UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+6. RX packets:850 errors:0 dropped:0 overruns:0 frame:0
+7. TX packets:628 errors:0 dropped:0 overruns:0 carrier:0
+8. collisions:0 txqueuelen:1000
+9. RX bytes:369135 (360.4 KiB) TX bytes:75945 (74.1 KiB)
+10. Interrupt:10 Base address:0x3000
+</code></pre><p>用ifconfig 来调试 eth0网卡的地址</p>
+<pre><code>1. [root@localhost ~]\# ifconfig eth0 down
+2. [root@localhost ~]\# ifconfig eth0 192.168.1.99 broadcast 192.168.1.255 netmask 255.255.255.0
+3. [root@localhost ~]\# ifconfig eth0 up
+4. [root@localhost ~]\# ifconfig eth0
+</code></pre><p>上例解释：</p>
+<p>第一行：ifconfig eth0 down 表示如果eth0是激活的，就把它DOWN掉。此命令等同于 ifdown eth0；<br>第二行：用ifconfig 来配置 eth0的IP地址、广播地址和网络掩码；<br>第三行：用ifconfig eth0 up 来激活eth0 ； 此命令等同于 ifup eth0<br>第四行：用 ifconfig eth0 来查看 eth0的状态；</p>
+
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+            <a href="/tags/network/" rel="tag">#network</a>
+          
+        </div>
       
 
       
@@ -413,7 +475,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5B9A_u4E49_u548C_u7528_u6CD5"><span class="nav-number">1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BED_u6CD5"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4F8B_u5B50_1"><span class="nav-number">2.</span> <span class="nav-text">例子 1</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
