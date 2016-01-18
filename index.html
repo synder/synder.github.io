@@ -219,15 +219,125 @@
 
     
     
+
+    
       
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/18/sshnplogin/" itemprop="url">
+                  linux 免密码SSH登陆设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-18T22:30:40+08:00" content="2016-01-18">
+              2016-01-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        
-        
-        
       
 
       
-    
+        
+          
+            <p>作用：可以在不需要密码的情况下，实现一些自动化任务</p>
+<p>原理：将客户机的公钥加入到服务器的信任列表里面，客户机使用私钥加密传输数据，服务器使用公钥解密数据</p>
+<p>需要用到的密令：</p>
+<ul>
+<li>ssh-keygen 生成ssh公钥</li>
+<li>ssh-copy-id 将本地公钥拷贝到远程的authorized keys</li>
+</ul>
+<p>用到的机器：</p>
+<ol>
+<li>客户机(192.168.0.10) 保存私钥</li>
+<li>服务器(192.168.0.11) 保存公钥</li>
+</ol>
+<p>过程：</p>
+<ol>
+<li>在192.168.0.10（客户机）上使用ssh-keygen 生成密码对</li>
+<li>在192.168.0.10（客户机）上使用ssh-copy-id 将公钥上传到192.168.0.11（服务器）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line">ssh-copy-id -i ~<span class="regexp">/.ssh/i</span>d_rsa.pub root@<span class="number">192.168</span><span class="number">.0</span><span class="number">.11</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -336,6 +446,242 @@
 </code></pre><p>上例解释：</p>
 <p>第一行：ifconfig eth0 down 表示如果eth0是激活的，就把它DOWN掉。此命令等同于 ifdown eth0；<br>第二行：用ifconfig 来配置 eth0的IP地址、广播地址和网络掩码；<br>第三行：用ifconfig eth0 up 来激活eth0 ； 此命令等同于 ifup eth0<br>第四行：用 ifconfig eth0 来查看 eth0的状态；</p>
 
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/18/ping/" itemprop="url">
+                  ping 命令详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-18T15:14:34+08:00" content="2016-01-18">
+              2016-01-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>ping命令是常用的网络命令，通常用来测试与目标主机的连通性。</p>
+<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. ping [参数] [主机名或IP地址]
+</code></pre><p>参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有问题。-R记录路由过程。-v详细显示指令的执行过程。\<p\>-c数目：在发送指定数目的包后停止。-i秒数：设定间隔几秒送一个网络封包给一台机器，预设值是一秒送一次。-I网络界面：使用指定的网络界面送出数据包。-l前置载入：设置在送出要求信息之前，先行发出的数据包。-p范本样式：设置填满数据包的范本样式。-s字节数：指定发送的数据字节数，预设值是56，加上8字节的ICMP头，一共是64ICMP数据字节。-t存活数值：设置存活数值TTL的大小。</p\></p>
+<h2 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h2><pre><code>1. \# 最普遍用法
+2. ping 192.168.120.205
+3. \# ping网关
+4. ping -b 192.168.120.1
+5. \# ping指定次数
+6. ping -c 10 192.168.120.206
+7. \# 时间间隔和次数限制的ping
+8. ping -c 10 -i 0.5 192.168.120.206
+9. \# 通过域名ping公网上的站点
+10. ping -c 5 www.58.com
+11. \# 多参数使用
+12. \# -i 3 发送周期为 3秒 -s 设置发送包的大小为1024
+13. \# -t 设置TTL值为 255
+14. ping -i 3 -s 1024 -t 255 192.168.120.206
+</code></pre>
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/18/netstat/" itemprop="url">
+                  netstat 命令详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-18T15:14:34+08:00" content="2016-01-18">
+              2016-01-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等</p>
+<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. netstat [option]
+</code></pre><p>参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显示数字的全部转化成数字。-l仅列出有在 Listen (监听) 的服務状态-p显示建立相关链接的程序名-c每隔一个固定时间，执行该netstat命令。-r显示路由信息，路由表-e显示扩展信息，例如uid等-s按各个协议进行统计</p>
+<h2 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h2><pre><code>1. \# 常用
+2. netstat -ntlp
+3. \#列出所有端口
+4. netstat -a
+5. \#列出所有 tcp 端口
+6. netstat -at
+7. \#列出所有 udp 端口
+8. netstat -au
+9. \#只显示监听端口
+10. netstat -l
+11. \#只列出所有监听 tcp 端口
+12. netstat -lt
+</code></pre>
           
         
       
