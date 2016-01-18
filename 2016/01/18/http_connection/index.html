@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux,network," />
+  <meta name="keywords" content="http,web," />
 
 
 
@@ -57,22 +57,69 @@
 
 
 
-<meta name="description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
+<meta name="description" content="内容：
+
+如何使用tcp链接
+Http的优化，包含并行链接、keep-alive、管道化链接
+管理链接时应该注意的问题
+
+
+TCP段的IP分组，它承载TCP数据流中的小块数据
+
+利用TCP套接字编程：
+
+
+对TCP性能的考虑：
+ Http位于TCP上层，所以Http的性能很大程度上取决于TCP的通道的性能。下图是HTTP请求事务的各个环节
+
+
+客户端首先要根据URL确定服务器的IP地址和端口号。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ping 命令详解">
-<meta property="og:url" content="https://synder.github.com/2016/01/18/ping/index.html">
+<meta property="og:title" content="Http 链接管理">
+<meta property="og:url" content="https://synder.github.com/2016/01/18/http_connection/index.html">
 <meta property="og:site_name" content="Synder">
-<meta property="og:description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
-<meta property="og:updated_time" content="2016-01-18T14:18:46.000Z">
+<meta property="og:description" content="内容：
+
+如何使用tcp链接
+Http的优化，包含并行链接、keep-alive、管道化链接
+管理链接时应该注意的问题
+
+
+TCP段的IP分组，它承载TCP数据流中的小块数据
+
+利用TCP套接字编程：
+
+
+对TCP性能的考虑：
+ Http位于TCP上层，所以Http的性能很大程度上取决于TCP的通道的性能。下图是HTTP请求事务的各个环节
+
+
+客户端首先要根据URL确定服务器的IP地址和端口号。">
+<meta property="og:image" content="https://synder.github.com/resources/7BE348472F77B1584ECDDABC9326C94F.jpg">
+<meta property="og:image" content="https://synder.github.com/resources/BCE6D057C48357C3EF13AEFB27A2B980.jpg">
+<meta property="og:image" content="https://synder.github.com/resources/C299B30B74003601F2E558F741DCC891.jpg">
+<meta property="og:image" content="https://synder.github.com/resources/660435CD44A510D4FFFEF2A65B4B8195.jpg">
+<meta property="og:image" content="https://synder.github.com/resources/C5782ABED23A95900F2B07EA7509A126.jpg">
+<meta property="og:updated_time" content="2016-01-18T15:11:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ping 命令详解">
-<meta name="twitter:description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
+<meta name="twitter:title" content="Http 链接管理">
+<meta name="twitter:description" content="内容：
+
+如何使用tcp链接
+Http的优化，包含并行链接、keep-alive、管道化链接
+管理链接时应该注意的问题
+
+
+TCP段的IP分组，它承载TCP数据流中的小块数据
+
+利用TCP套接字编程：
+
+
+对TCP性能的考虑：
+ Http位于TCP上层，所以Http的性能很大程度上取决于TCP的通道的性能。下图是HTTP请求事务的各个环节
+
+
+客户端首先要根据URL确定服务器的IP地址和端口号。">
 
 
 
@@ -90,7 +137,7 @@
   };
 </script>
 
-  <title> ping 命令详解 | Synder </title>
+  <title> Http 链接管理 | Synder </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +287,7 @@
             
             
               
-                ping 命令详解
+                Http 链接管理
               
             
           </h1>
@@ -252,7 +299,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-18T15:14:34+08:00" content="2016-01-18">
+            <time itemprop="dateCreated" datetime="2016-01-18T23:14:34+08:00" content="2016-01-18">
               2016-01-18
             </time>
           </span>
@@ -266,8 +313,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
                   </a>
                 </span>
 
@@ -297,24 +344,70 @@
       
 
       
-        <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>ping命令是常用的网络命令，通常用来测试与目标主机的连通性。</p>
-<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. ping [参数] [主机名或IP地址]
-</code></pre><p>参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有问题。-R记录路由过程。-v详细显示指令的执行过程。\<p\>-c数目：在发送指定数目的包后停止。-i秒数：设定间隔几秒送一个网络封包给一台机器，预设值是一秒送一次。-I网络界面：使用指定的网络界面送出数据包。-l前置载入：设置在送出要求信息之前，先行发出的数据包。-p范本样式：设置填满数据包的范本样式。-s字节数：指定发送的数据字节数，预设值是56，加上8字节的ICMP头，一共是64ICMP数据字节。-t存活数值：设置存活数值TTL的大小。</p\></p>
-<h2 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h2><pre><code>1. \# 最普遍用法
-2. ping 192.168.120.205
-3. \# ping网关
-4. ping -b 192.168.120.1
-5. \# ping指定次数
-6. ping -c 10 192.168.120.206
-7. \# 时间间隔和次数限制的ping
-8. ping -c 10 -i 0.5 192.168.120.206
-9. \# 通过域名ping公网上的站点
-10. ping -c 5 www.58.com
-11. \# 多参数使用
-12. \# -i 3 发送周期为 3秒 -s 设置发送包的大小为1024
-13. \# -t 设置TTL值为 255
-14. ping -i 3 -s 1024 -t 255 192.168.120.206
-</code></pre>
+        <p><strong>内容：</strong></p>
+<ol>
+<li>如何使用tcp链接</li>
+<li>Http的优化，包含并行链接、keep-alive、管道化链接</li>
+<li>管理链接时应该注意的问题</li>
+</ol>
+<p><img src="/resources/7BE348472F77B1584ECDDABC9326C94F.jpg" alt=""></p>
+<p><strong>TCP段的IP分组，它承载TCP数据流中的小块数据</strong></p>
+<p><img src="/resources/BCE6D057C48357C3EF13AEFB27A2B980.jpg" alt=""></p>
+<p><strong>利用TCP套接字编程：</strong></p>
+<p><img src="/resources/C299B30B74003601F2E558F741DCC891.jpg" alt=""><strong>
+</strong></p>
+<p><strong>对TCP性能的考虑：</strong></p>
+<p> Http位于TCP上层，所以Http的性能很大程度上取决于TCP的通道的性能。下图是HTTP请求事务的各个环节</p>
+<p><img src="/resources/660435CD44A510D4FFFEF2A65B4B8195.jpg" alt=""></p>
+<ol>
+<li>客户端首先要根据URL确定服务器的IP地址和端口号。</li>
+<li>客户端会向服务器发送一条TCP链接请求，并等待服务器返回应答请求，建立TCP链接</li>
+<li>一旦建立链接客户端向服务器发送数据</li>
+<li>服务器处理请求</li>
+<li>服务器向客户端发送数据</li>
+</ol>
+<p><strong>性能聚焦：</strong></p>
+<ol>
+<li>TCP握手</li>
+<li>TCP慢启动</li>
+<li>数据聚集的Nagle算法</li>
+<li>TCP延迟确认算法</li>
+<li>TIME_WAIT和端口耗尽</li>
+</ol>
+<p>握手过程：</p>
+<p><img src="/resources/C5782ABED23A95900F2B07EA7509A126.jpg" alt=""></p>
+<ol>
+<li>请求TCP链接时，客户端向服务器发送一个TCP分组，里面包含一个SYN的标记，表示这是一个链接请求</li>
+<li>服务器收到请求，会送一个SYN和ACK分组，表示请求被接受</li>
+<li>客户端收到回复，回复一天确认信息，表示链接已经建立，现代TCP允许在这个环节发送数据</li>
+<li>TCP的每个分组都包含一个序列号和完整性校验，接受者收到完好的序列时会会送一个小的确认分组。</li>
+</ol>
+<p>TCP慢启动：</p>
+<ol>
+<li>TCP一开始传输数据时会限制传输速度，随着传输进行会逐步提高传输速度，HTTP中存在一些可以重用TCP的参数。</li>
+</ol>
+<p><strong>Http链接处理：</strong></p>
+<ul>
+<li><p>Connection</p>
+</li>
+<li><p>可用 close来说明发送完一条报文后必须关闭链接</p>
+</li>
+<li><p>并行链接</p>
+</li>
+<li><p>持久链接</p>
+</li>
+<li><p>http/1.0 keep-alive 服务器在响应报文中返回 Connection : Keep-Alive，客户端就不会关闭链接</p>
+</li>
+<li><p>keep-alive 可以指定参数</p>
+</li>
+<li><p>Connection: Keep-Alive</p>
+</li>
+<li><p>Keep-Alive: max=5, timeout=12</p>
+</li>
+<li><p>管道化链接</p>
+</li>
+</ul>
+
       
     </div>
 
@@ -322,9 +415,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag">#linux</a>
+            <a href="/tags/http/" rel="tag">#http</a>
           
-            <a href="/tags/network/" rel="tag">#network</a>
+            <a href="/tags/web/" rel="tag">#web</a>
           
         </div>
       
@@ -333,16 +426,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/18/netstat/" rel="next" title="netstat 命令详解">
-                <i class="fa fa-chevron-left"></i> netstat 命令详解
+              <a href="/2016/01/18/ssh_login/" rel="next" title="linux 免密码SSH登陆设置">
+                <i class="fa fa-chevron-left"></i> linux 免密码SSH登陆设置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/18/ssh_login/" rel="prev" title="linux 免密码SSH登陆设置">
-                linux 免密码SSH登陆设置 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/01/18/captcha/" rel="prev" title="验证码安全问题">
+                验证码安全问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -467,7 +560,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5B9A_u4E49_u548C_u7528_u6CD5"><span class="nav-number">1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BED_u6CD5"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4F8B_u5B50"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

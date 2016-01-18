@@ -60,7 +60,7 @@
 <meta name="description" content="Noder">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Synder">
-<meta property="og:url" content="https://synder.github.com/index.html">
+<meta property="og:url" content="https://synder.github.com/tags/http/index.html">
 <meta property="og:site_name" content="Synder">
 <meta property="og:description" content="Noder">
 <meta name="twitter:card" content="summary">
@@ -83,7 +83,7 @@
   };
 </script>
 
-  <title> Synder </title>
+  <title> 标签: http | Synder </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -102,9 +102,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -213,156 +211,45 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
 
-    
-
-    
-    
-      
-      
-        
-        
-        
-      
-
-      
-    
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/18/captcha/" itemprop="url">
-                  验证码安全问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-18T23:41:30+08:00" content="2016-01-18">
-              2016-01-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/security/" itemprop="url" rel="index">
-                    <span itemprop="name">security</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>短信验证码安全</strong></p>
-<ol>
-<li>短信的安全基础在于验证码安全，如果图形验证码被绕过，短信验证码就会被轻易发送</li>
-<li>短信发送接口需要对IP的发送频率做出限制</li>
-<li>短信发送接口需要对Phone的发送频率做出限制</li>
-<li>页面做出的发送频率限制基本是没有效果的</li>
-</ol>
-<p><strong>短信验证码设计</strong></p>
-<ol>
-<li>需要发送由用户发送短信的地方都需要图形验证码</li>
-<li>在服务器针对每个IP发送频率做出限制（但是黑客仍然可以更换IP）</li>
-<li>需要针对每个Phone做发送频率限制（但黑客可以不断更换手机）</li>
-<li>通常需要结合两种方式来作出限制</li>
-</ol>
-<p><strong>图形验证码安全</strong></p>
-<ol>
-<li><strong>图形验证码出现逻辑</strong>不应该放在客户端，比如在Cookie中记录错误次数，攻击者可以使用不带Cookie的提交，那么验证码永远也不会出现</li>
-<li><strong>图形验证码出现逻辑</strong>也不应放在session中，如果攻击者不带session攻击，那么服务器将拿不到任何session，那么永远也不会出现验证码</li>
-<li>图形验证码不管验证成功还是失败，都不能被重复使用，否者图形验证码将是形同虚设</li>
-<li>把验证码内容输出到客户端都是很不好的</li>
-<li>更新验证码的内容不能交给客户端完成，攻击者可以拦截请求新的验证码的请求，这样客户端Session永远也不会更新内容，黑客就达到了多次使用同一个验证码的目的。</li>
-<li>大型网站最好使用统一的安全验证码，各处使用同一个验证码接口</li>
-</ol>
-<p><strong>图形验证码的设计</strong></p>
-<ol>
-<li>尽量扭曲字符，避免机器引擎识别</li>
-<li>例如登陆等页面，需要在一定的逻辑出现后才出现验证码的页面，控制验证码出现的逻辑放在服务器</li>
-<li>验证码内容存放在缓存中，保证使用之后就会被删除，如果存放在数据中，黑客点击验证码就有可能撑爆数据库</li>
-</ol>
-
-          
-        
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        http
+        <small>标签</small>
+      </h2>
     </div>
 
-    <footer class="post-footer">
+    
       
 
-      
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/01/18/http_connection/" itemprop="url">
+              
+                <span itemprop="name">Http 链接管理</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-01-18T23:14:34+08:00"
+              content="2016-01-18" >
+          01-18
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
     
-
-  </section>
+  </div>
 
   
 
