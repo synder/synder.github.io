@@ -927,12 +927,13 @@ pre .javascript .function {
   display: inline-block;
   padding: 0 40px;
   color: #222;
+  font-size: 36px;
   background: none;
   border-bottom: none;
   font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .brand:hover {
-  color: #fff;
+  color: #222;
 }
 .logo {
   display: inline-block;
@@ -1543,7 +1544,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f4f1e2;
+  background: #3b018a;
 }
 .sidebar-nav {
   margin: 0 0 20px;
