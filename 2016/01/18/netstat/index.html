@@ -57,22 +57,22 @@
 
 
 
-<meta name="description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
+<meta name="description" content="定义和用法用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
+语法1. netstat [option]
+参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ping 命令详解">
-<meta property="og:url" content="https://synder.github.com/2016/01/18/ping/index.html">
+<meta property="og:title" content="netstat 命令详解">
+<meta property="og:url" content="https://synder.github.com/2016/01/18/netstat/index.html">
 <meta property="og:site_name" content="Synder">
-<meta property="og:description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
-<meta property="og:updated_time" content="2016-01-18T14:10:18.000Z">
+<meta property="og:description" content="定义和用法用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
+语法1. netstat [option]
+参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显">
+<meta property="og:updated_time" content="2016-01-18T14:15:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ping 命令详解">
-<meta name="twitter:description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
+<meta name="twitter:title" content="netstat 命令详解">
+<meta name="twitter:description" content="定义和用法用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
+语法1. netstat [option]
+参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显">
 
 
 
@@ -90,7 +90,7 @@
   };
 </script>
 
-  <title> ping 命令详解 | Synder </title>
+  <title> netstat 命令详解 | Synder </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +240,7 @@
             
             
               
-                ping 命令详解
+                netstat 命令详解
               
             
           </h1>
@@ -278,23 +278,21 @@
       
 
       
-        <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>ping命令是常用的网络命令，通常用来测试与目标主机的连通性。</p>
-<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. ping [参数] [主机名或IP地址]
-</code></pre><p>参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有问题。-R记录路由过程。-v详细显示指令的执行过程。\<p\>-c数目：在发送指定数目的包后停止。-i秒数：设定间隔几秒送一个网络封包给一台机器，预设值是一秒送一次。-I网络界面：使用指定的网络界面送出数据包。-l前置载入：设置在送出要求信息之前，先行发出的数据包。-p范本样式：设置填满数据包的范本样式。-s字节数：指定发送的数据字节数，预设值是56，加上8字节的ICMP头，一共是64ICMP数据字节。-t存活数值：设置存活数值TTL的大小。</p\></p>
-<h2 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h2><pre><code>1. \# 最普遍用法
-2. ping 192.168.120.205
-3. \# ping网关
-4. ping -b 192.168.120.1
-5. \# ping指定次数
-6. ping -c 10 192.168.120.206
-7. \# 时间间隔和次数限制的ping
-8. ping -c 10 -i 0.5 192.168.120.206
-9. \# 通过域名ping公网上的站点
-10. ping -c 5 www.58.com
-11. \# 多参数使用
-12. \# -i 3 发送周期为 3秒 -s 设置发送包的大小为1024
-13. \# -t 设置TTL值为 255
-14. ping -i 3 -s 1024 -t 255 192.168.120.206
+        <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等</p>
+<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. netstat [option]
+</code></pre><p>参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显示数字的全部转化成数字。-l仅列出有在 Listen (监听) 的服務状态-p显示建立相关链接的程序名-c每隔一个固定时间，执行该netstat命令。-r显示路由信息，路由表-e显示扩展信息，例如uid等-s按各个协议进行统计</p>
+<h2 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h2><pre><code>1. \# 常用
+2. netstat -ntlp
+3. \#列出所有端口
+4. netstat -a
+5. \#列出所有 tcp 端口
+6. netstat -at
+7. \#列出所有 udp 端口
+8. netstat -au
+9. \#只显示监听端口
+10. netstat -l
+11. \#只列出所有监听 tcp 端口
+12. netstat -lt
 </code></pre>
       
     </div>
@@ -314,13 +312,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/18/netstat/" rel="next" title="netstat 命令详解">
-                <i class="fa fa-chevron-left"></i> netstat 命令详解
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/18/ping/" rel="prev" title="ping 命令详解">
+                ping 命令详解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
