@@ -251,8 +251,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/18/ping/" itemprop="url">
-                  ping 命令详解
+                <a class="post-title-link" href="/2016/01/18/ifconfig/" itemprop="url">
+                  ifconfig
                 </a>
               
             
@@ -265,30 +265,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-18T15:14:34+08:00" content="2016-01-18">
+            <time itemprop="dateCreated" datetime="2016-01-18T22:22:23+08:00" content="2016-01-18">
               2016-01-18
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -312,24 +293,7 @@
       
         
           
-            <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>ping命令是常用的网络命令，通常用来测试与目标主机的连通性。</p>
-<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. ping [参数] [主机名或IP地址]
-</code></pre><p>参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有问题。-R记录路由过程。-v详细显示指令的执行过程。\<p\>-c数目：在发送指定数目的包后停止。-i秒数：设定间隔几秒送一个网络封包给一台机器，预设值是一秒送一次。-I网络界面：使用指定的网络界面送出数据包。-l前置载入：设置在送出要求信息之前，先行发出的数据包。-p范本样式：设置填满数据包的范本样式。-s字节数：指定发送的数据字节数，预设值是56，加上8字节的ICMP头，一共是64ICMP数据字节。-t存活数值：设置存活数值TTL的大小。</p\></p>
-<h2 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h2><pre><code>1. \# 最普遍用法
-2. ping 192.168.120.205
-3. \# ping网关
-4. ping -b 192.168.120.1
-5. \# ping指定次数
-6. ping -c 10 192.168.120.206
-7. \# 时间间隔和次数限制的ping
-8. ping -c 10 -i 0.5 192.168.120.206
-9. \# 通过域名ping公网上的站点
-10. ping -c 5 www.58.com
-11. \# 多参数使用
-12. \# -i 3 发送周期为 3秒 -s 设置发送包的大小为1024
-13. \# -t 设置TTL值为 255
-14. ping -i 3 -s 1024 -t 255 192.168.120.206
-</code></pre>
+            
           
         
       
@@ -391,7 +355,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
