@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux,network," />
+  <meta name="keywords" content="captcha,security,web," />
 
 
 
@@ -57,22 +57,49 @@
 
 
 
-<meta name="description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
+<meta name="description" content="短信验证码安全
+
+短信的安全基础在于验证码安全，如果图形验证码被绕过，短信验证码就会被轻易发送
+短信发送接口需要对IP的发送频率做出限制
+短信发送接口需要对Phone的发送频率做出限制
+页面做出的发送频率限制基本是没有效果的
+
+短信验证码设计
+
+需要发送由用户发送短信的地方都需要图形验证码
+在服务器针对每个IP发送频率做出限制（但是黑客仍然可以更换IP）
+需要针对每个Phone做发送频率限制（但黑">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ping 命令详解">
-<meta property="og:url" content="https://synder.github.com/2016/01/18/ping/index.html">
+<meta property="og:title" content="验证码安全问题">
+<meta property="og:url" content="https://synder.github.com/2016/01/18/captcha/index.html">
 <meta property="og:site_name" content="Synder">
-<meta property="og:description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
-<meta property="og:updated_time" content="2016-01-18T14:18:46.000Z">
+<meta property="og:description" content="短信验证码安全
+
+短信的安全基础在于验证码安全，如果图形验证码被绕过，短信验证码就会被轻易发送
+短信发送接口需要对IP的发送频率做出限制
+短信发送接口需要对Phone的发送频率做出限制
+页面做出的发送频率限制基本是没有效果的
+
+短信验证码设计
+
+需要发送由用户发送短信的地方都需要图形验证码
+在服务器针对每个IP发送频率做出限制（但是黑客仍然可以更换IP）
+需要针对每个Phone做发送频率限制（但黑">
+<meta property="og:updated_time" content="2016-01-18T14:40:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ping 命令详解">
-<meta name="twitter:description" content="定义和用法ping命令是常用的网络命令，通常用来测试与目标主机的连通性。
-语法1. ping [参数] [主机名或IP地址]
-参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有">
+<meta name="twitter:title" content="验证码安全问题">
+<meta name="twitter:description" content="短信验证码安全
+
+短信的安全基础在于验证码安全，如果图形验证码被绕过，短信验证码就会被轻易发送
+短信发送接口需要对IP的发送频率做出限制
+短信发送接口需要对Phone的发送频率做出限制
+页面做出的发送频率限制基本是没有效果的
+
+短信验证码设计
+
+需要发送由用户发送短信的地方都需要图形验证码
+在服务器针对每个IP发送频率做出限制（但是黑客仍然可以更换IP）
+需要针对每个Phone做发送频率限制（但黑">
 
 
 
@@ -90,7 +117,7 @@
   };
 </script>
 
-  <title> ping 命令详解 | Synder </title>
+  <title> 验证码安全问题 | Synder </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +267,7 @@
             
             
               
-                ping 命令详解
+                验证码安全问题
               
             
           </h1>
@@ -266,8 +293,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/security/" itemprop="url" rel="index">
+                    <span itemprop="name">security</span>
                   </a>
                 </span>
 
@@ -297,24 +324,36 @@
       
 
       
-        <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>ping命令是常用的网络命令，通常用来测试与目标主机的连通性。</p>
-<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. ping [参数] [主机名或IP地址]
-</code></pre><p>参数描述-dSocket SO_DEBUG功能。-f极限检测。大量且快速地发送网络封包给一台机器，看它的回应。-n只输出数值。-q不显示任何传送封包的信息，只显示最后的结果。-r忽略普通的Routing Table，直接将数据包送到远端主机上。通常是查看本机的网络接口是否有问题。-R记录路由过程。-v详细显示指令的执行过程。\<p\>-c数目：在发送指定数目的包后停止。-i秒数：设定间隔几秒送一个网络封包给一台机器，预设值是一秒送一次。-I网络界面：使用指定的网络界面送出数据包。-l前置载入：设置在送出要求信息之前，先行发出的数据包。-p范本样式：设置填满数据包的范本样式。-s字节数：指定发送的数据字节数，预设值是56，加上8字节的ICMP头，一共是64ICMP数据字节。-t存活数值：设置存活数值TTL的大小。</p\></p>
-<h2 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h2><pre><code>1. \# 最普遍用法
-2. ping 192.168.120.205
-3. \# ping网关
-4. ping -b 192.168.120.1
-5. \# ping指定次数
-6. ping -c 10 192.168.120.206
-7. \# 时间间隔和次数限制的ping
-8. ping -c 10 -i 0.5 192.168.120.206
-9. \# 通过域名ping公网上的站点
-10. ping -c 5 www.58.com
-11. \# 多参数使用
-12. \# -i 3 发送周期为 3秒 -s 设置发送包的大小为1024
-13. \# -t 设置TTL值为 255
-14. ping -i 3 -s 1024 -t 255 192.168.120.206
-</code></pre>
+        <p><strong>短信验证码安全</strong></p>
+<ol>
+<li>短信的安全基础在于验证码安全，如果图形验证码被绕过，短信验证码就会被轻易发送</li>
+<li>短信发送接口需要对IP的发送频率做出限制</li>
+<li>短信发送接口需要对Phone的发送频率做出限制</li>
+<li>页面做出的发送频率限制基本是没有效果的</li>
+</ol>
+<p><strong>短信验证码设计</strong></p>
+<ol>
+<li>需要发送由用户发送短信的地方都需要图形验证码</li>
+<li>在服务器针对每个IP发送频率做出限制（但是黑客仍然可以更换IP）</li>
+<li>需要针对每个Phone做发送频率限制（但黑客可以不断更换手机）</li>
+<li>通常需要结合两种方式来作出限制</li>
+</ol>
+<p><strong>图形验证码安全</strong></p>
+<ol>
+<li><strong>图形验证码出现逻辑</strong>不应该放在客户端，比如在Cookie中记录错误次数，攻击者可以使用不带Cookie的提交，那么验证码永远也不会出现</li>
+<li><strong>图形验证码出现逻辑</strong>也不应放在session中，如果攻击者不带session攻击，那么服务器将拿不到任何session，那么永远也不会出现验证码</li>
+<li>图形验证码不管验证成功还是失败，都不能被重复使用，否者图形验证码将是形同虚设</li>
+<li>把验证码内容输出到客户端都是很不好的</li>
+<li>更新验证码的内容不能交给客户端完成，攻击者可以拦截请求新的验证码的请求，这样客户端Session永远也不会更新内容，黑客就达到了多次使用同一个验证码的目的。</li>
+<li>大型网站最好使用统一的安全验证码，各处使用同一个验证码接口</li>
+</ol>
+<p><strong>图形验证码的设计</strong></p>
+<ol>
+<li>尽量扭曲字符，避免机器引擎识别</li>
+<li>例如登陆等页面，需要在一定的逻辑出现后才出现验证码的页面，控制验证码出现的逻辑放在服务器</li>
+<li>验证码内容存放在缓存中，保证使用之后就会被删除，如果存放在数据中，黑客点击验证码就有可能撑爆数据库</li>
+</ol>
+
       
     </div>
 
@@ -322,9 +361,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag">#linux</a>
+            <a href="/tags/captcha/" rel="tag">#captcha</a>
           
-            <a href="/tags/network/" rel="tag">#network</a>
+            <a href="/tags/security/" rel="tag">#security</a>
+          
+            <a href="/tags/web/" rel="tag">#web</a>
           
         </div>
       
@@ -333,16 +374,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/18/netstat/" rel="next" title="netstat 命令详解">
-                <i class="fa fa-chevron-left"></i> netstat 命令详解
+              <a href="/2016/01/18/ping/" rel="next" title="ping 命令详解">
+                <i class="fa fa-chevron-left"></i> ping 命令详解
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/18/captcha/" rel="prev" title="验证码安全问题">
-                验证码安全问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/01/18/ssh_login/" rel="prev" title="linux 免密码SSH登陆设置">
+                linux 免密码SSH登陆设置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -467,7 +508,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5B9A_u4E49_u548C_u7528_u6CD5"><span class="nav-number">1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BED_u6CD5"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4F8B_u5B50"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

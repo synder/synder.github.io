@@ -361,8 +361,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/18/ifconfig/" itemprop="url">
-                  ifconfig 命令详解
+                <a class="post-title-link" href="/2016/01/18/captcha/" itemprop="url">
+                  验证码安全问题
                 </a>
               
             
@@ -389,8 +389,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/security/" itemprop="url" rel="index">
+                    <span itemprop="name">security</span>
                   </a>
                 </span>
 
@@ -422,29 +422,35 @@
       
         
           
-            <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>ifconfig命令常用来显示,配置系统中的网络接口（网卡）信息，如激活、关闭、设置地址等。</p>
-<p>在Linux系统中，网卡命名规律：eth0为第一块以太网卡（Ethernet Card），eth1为第二块。</p>
-<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. ifconfig [网络设备] [省略x个参数]
-</code></pre><h2 id="u4F8B_u5B50_1"><a href="#u4F8B_u5B50_1" class="headerlink" title="例子 1"></a>例子 1</h2><p>ifconfig 如果不接任何参数，就会输出当前网络接口的情况</p>
-<pre><code>1. [root@localhost ~]\# ifconfig
-</code></pre><p>运行结果：</p>
-<pre><code>1. eth0
-2. Link encap:Ethernet HWaddr 00:C0:9F:94:78:0E
-3. inet addr:192.168.1.88 Bcast:192.168.1.255 Mask:255.255.255.0
-4. inet6 addr: fe80::2c0:9fff:fe94:780e/64 Scope:Link
-5. UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
-6. RX packets:850 errors:0 dropped:0 overruns:0 frame:0
-7. TX packets:628 errors:0 dropped:0 overruns:0 carrier:0
-8. collisions:0 txqueuelen:1000
-9. RX bytes:369135 (360.4 KiB) TX bytes:75945 (74.1 KiB)
-10. Interrupt:10 Base address:0x3000
-</code></pre><p>用ifconfig 来调试 eth0网卡的地址</p>
-<pre><code>1. [root@localhost ~]\# ifconfig eth0 down
-2. [root@localhost ~]\# ifconfig eth0 192.168.1.99 broadcast 192.168.1.255 netmask 255.255.255.0
-3. [root@localhost ~]\# ifconfig eth0 up
-4. [root@localhost ~]\# ifconfig eth0
-</code></pre><p>上例解释：</p>
-<p>第一行：ifconfig eth0 down 表示如果eth0是激活的，就把它DOWN掉。此命令等同于 ifdown eth0；<br>第二行：用ifconfig 来配置 eth0的IP地址、广播地址和网络掩码；<br>第三行：用ifconfig eth0 up 来激活eth0 ； 此命令等同于 ifup eth0<br>第四行：用 ifconfig eth0 来查看 eth0的状态；</p>
+            <p><strong>短信验证码安全</strong></p>
+<ol>
+<li>短信的安全基础在于验证码安全，如果图形验证码被绕过，短信验证码就会被轻易发送</li>
+<li>短信发送接口需要对IP的发送频率做出限制</li>
+<li>短信发送接口需要对Phone的发送频率做出限制</li>
+<li>页面做出的发送频率限制基本是没有效果的</li>
+</ol>
+<p><strong>短信验证码设计</strong></p>
+<ol>
+<li>需要发送由用户发送短信的地方都需要图形验证码</li>
+<li>在服务器针对每个IP发送频率做出限制（但是黑客仍然可以更换IP）</li>
+<li>需要针对每个Phone做发送频率限制（但黑客可以不断更换手机）</li>
+<li>通常需要结合两种方式来作出限制</li>
+</ol>
+<p><strong>图形验证码安全</strong></p>
+<ol>
+<li><strong>图形验证码出现逻辑</strong>不应该放在客户端，比如在Cookie中记录错误次数，攻击者可以使用不带Cookie的提交，那么验证码永远也不会出现</li>
+<li><strong>图形验证码出现逻辑</strong>也不应放在session中，如果攻击者不带session攻击，那么服务器将拿不到任何session，那么永远也不会出现验证码</li>
+<li>图形验证码不管验证成功还是失败，都不能被重复使用，否者图形验证码将是形同虚设</li>
+<li>把验证码内容输出到客户端都是很不好的</li>
+<li>更新验证码的内容不能交给客户端完成，攻击者可以拦截请求新的验证码的请求，这样客户端Session永远也不会更新内容，黑客就达到了多次使用同一个验证码的目的。</li>
+<li>大型网站最好使用统一的安全验证码，各处使用同一个验证码接口</li>
+</ol>
+<p><strong>图形验证码的设计</strong></p>
+<ol>
+<li>尽量扭曲字符，避免机器引擎识别</li>
+<li>例如登陆等页面，需要在一定的逻辑出现后才出现验证码的页面，控制验证码出现的逻辑放在服务器</li>
+<li>验证码内容存放在缓存中，保证使用之后就会被删除，如果存放在数据中，黑客点击验证码就有可能撑爆数据库</li>
+</ol>
 
           
         
@@ -701,6 +707,131 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/18/ifconfig/" itemprop="url">
+                  ifconfig 命令详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-18T15:14:34+08:00" content="2016-01-18">
+              2016-01-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>ifconfig命令常用来显示,配置系统中的网络接口（网卡）信息，如激活、关闭、设置地址等。</p>
+<p>在Linux系统中，网卡命名规律：eth0为第一块以太网卡（Ethernet Card），eth1为第二块。</p>
+<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. ifconfig [网络设备] [省略x个参数]
+</code></pre><h2 id="u4F8B_u5B50_1"><a href="#u4F8B_u5B50_1" class="headerlink" title="例子 1"></a>例子 1</h2><p>ifconfig 如果不接任何参数，就会输出当前网络接口的情况</p>
+<pre><code>1. [root@localhost ~]\# ifconfig
+</code></pre><p>运行结果：</p>
+<pre><code>1. eth0
+2. Link encap:Ethernet HWaddr 00:C0:9F:94:78:0E
+3. inet addr:192.168.1.88 Bcast:192.168.1.255 Mask:255.255.255.0
+4. inet6 addr: fe80::2c0:9fff:fe94:780e/64 Scope:Link
+5. UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+6. RX packets:850 errors:0 dropped:0 overruns:0 frame:0
+7. TX packets:628 errors:0 dropped:0 overruns:0 carrier:0
+8. collisions:0 txqueuelen:1000
+9. RX bytes:369135 (360.4 KiB) TX bytes:75945 (74.1 KiB)
+10. Interrupt:10 Base address:0x3000
+</code></pre><p>用ifconfig 来调试 eth0网卡的地址</p>
+<pre><code>1. [root@localhost ~]\# ifconfig eth0 down
+2. [root@localhost ~]\# ifconfig eth0 192.168.1.99 broadcast 192.168.1.255 netmask 255.255.255.0
+3. [root@localhost ~]\# ifconfig eth0 up
+4. [root@localhost ~]\# ifconfig eth0
+</code></pre><p>上例解释：</p>
+<p>第一行：ifconfig eth0 down 表示如果eth0是激活的，就把它DOWN掉。此命令等同于 ifdown eth0；<br>第二行：用ifconfig 来配置 eth0的IP地址、广播地址和网络掩码；<br>第三行：用ifconfig eth0 up 来激活eth0 ； 此命令等同于 ifup eth0<br>第四行：用 ifconfig eth0 来查看 eth0的状态；</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
 
   </section>
 
@@ -743,21 +874,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
