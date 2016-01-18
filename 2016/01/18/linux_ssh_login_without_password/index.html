@@ -57,22 +57,49 @@
 
 
 
-<meta name="description" content="定义和用法用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
-语法1. netstat [option]
-参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显">
+<meta name="description" content="#
+作用：可以在不需要密码的情况下，实现一些自动化任务
+原理：将客户机的公钥加入到服务器的信任列表里面，客户机使用私钥加密传输数据，服务器使用公钥解密数据
+需要用到的密令：
+
+ssh-keygen 生成ssh公钥
+ssh-copy-id 将本地公钥拷贝到远程的authorized keys
+
+用到的机器：
+
+客户机(192.168.0.10) 保存私钥
+服务器(192.168.0.11) 保存公钥">
 <meta property="og:type" content="article">
-<meta property="og:title" content="netstat 命令详解">
-<meta property="og:url" content="https://synder.github.com/2016/01/18/netstat/index.html">
+<meta property="og:title" content="linux 免密码SSH登陆设置">
+<meta property="og:url" content="https://synder.github.com/2016/01/18/linux_ssh_login_without_password/index.html">
 <meta property="og:site_name" content="Synder">
-<meta property="og:description" content="定义和用法用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
-语法1. netstat [option]
-参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显">
-<meta property="og:updated_time" content="2016-01-18T14:18:44.000Z">
+<meta property="og:description" content="#
+作用：可以在不需要密码的情况下，实现一些自动化任务
+原理：将客户机的公钥加入到服务器的信任列表里面，客户机使用私钥加密传输数据，服务器使用公钥解密数据
+需要用到的密令：
+
+ssh-keygen 生成ssh公钥
+ssh-copy-id 将本地公钥拷贝到远程的authorized keys
+
+用到的机器：
+
+客户机(192.168.0.10) 保存私钥
+服务器(192.168.0.11) 保存公钥">
+<meta property="og:updated_time" content="2016-01-18T14:27:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="netstat 命令详解">
-<meta name="twitter:description" content="定义和用法用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等
-语法1. netstat [option]
-参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显">
+<meta name="twitter:title" content="linux 免密码SSH登陆设置">
+<meta name="twitter:description" content="#
+作用：可以在不需要密码的情况下，实现一些自动化任务
+原理：将客户机的公钥加入到服务器的信任列表里面，客户机使用私钥加密传输数据，服务器使用公钥解密数据
+需要用到的密令：
+
+ssh-keygen 生成ssh公钥
+ssh-copy-id 将本地公钥拷贝到远程的authorized keys
+
+用到的机器：
+
+客户机(192.168.0.10) 保存私钥
+服务器(192.168.0.11) 保存公钥">
 
 
 
@@ -90,7 +117,7 @@
   };
 </script>
 
-  <title> netstat 命令详解 | Synder </title>
+  <title> linux 免密码SSH登陆设置 | Synder </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +267,7 @@
             
             
               
-                netstat 命令详解
+                linux 免密码SSH登陆设置
               
             
           </h1>
@@ -297,22 +324,25 @@
       
 
       
-        <h2 id="u5B9A_u4E49_u548C_u7528_u6CD5"><a href="#u5B9A_u4E49_u548C_u7528_u6CD5" class="headerlink" title="定义和用法"></a>定义和用法</h2><p>用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等</p>
-<h3 id="u8BED_u6CD5"><a href="#u8BED_u6CD5" class="headerlink" title="语法"></a>语法</h3><pre><code>1. netstat [option]
-</code></pre><p>参数描述-a(all)显示所有选项，默认不显示LISTEN相关-t(tcp)仅显示tcp相关选项-u(udp)仅显示udp相关选项-n拒绝显示别名，能显示数字的全部转化成数字。-l仅列出有在 Listen (监听) 的服務状态-p显示建立相关链接的程序名-c每隔一个固定时间，执行该netstat命令。-r显示路由信息，路由表-e显示扩展信息，例如uid等-s按各个协议进行统计</p>
-<h2 id="u4F8B_u5B50"><a href="#u4F8B_u5B50" class="headerlink" title="例子"></a>例子</h2><pre><code>1. \# 常用
-2. netstat -ntlp
-3. \#列出所有端口
-4. netstat -a
-5. \#列出所有 tcp 端口
-6. netstat -at
-7. \#列出所有 udp 端口
-8. netstat -au
-9. \#只显示监听端口
-10. netstat -l
-11. \#只列出所有监听 tcp 端口
-12. netstat -lt
-</code></pre>
+        <p>#</p>
+<p>作用：可以在不需要密码的情况下，实现一些自动化任务</p>
+<p>原理：将客户机的公钥加入到服务器的信任列表里面，客户机使用私钥加密传输数据，服务器使用公钥解密数据</p>
+<p>需要用到的密令：</p>
+<ul>
+<li>ssh-keygen 生成ssh公钥</li>
+<li>ssh-copy-id 将本地公钥拷贝到远程的authorized keys</li>
+</ul>
+<p>用到的机器：</p>
+<ol>
+<li>客户机(192.168.0.10) 保存私钥</li>
+<li>服务器(192.168.0.11) 保存公钥</li>
+</ol>
+<p>过程：</p>
+<ol>
+<li>在192.168.0.10（客户机）上使用ssh-keygen 生成密码对</li>
+<li>在192.168.0.10（客户机）上使用ssh-copy-id 将公钥上传到192.168.0.11（服务器）</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br><span class="line">ssh-copy-id -i ~<span class="regexp">/.ssh/i</span>d_rsa.pub root@<span class="number">192.168</span><span class="number">.0</span><span class="number">.11</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -331,16 +361,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/18/linux_ssh_login_without_password/" rel="next" title="linux 免密码SSH登陆设置">
-                <i class="fa fa-chevron-left"></i> linux 免密码SSH登陆设置
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/01/18/ping/" rel="prev" title="ping 命令详解">
-                ping 命令详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/01/18/netstat/" rel="prev" title="netstat 命令详解">
+                netstat 命令详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,7 +491,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5B9A_u4E49_u548C_u7528_u6CD5"><span class="nav-number">1.</span> <span class="nav-text">定义和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BED_u6CD5"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u4F8B_u5B50"><span class="nav-number">2.</span> <span class="nav-text">例子</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
