@@ -1464,7 +1464,7 @@ pre .javascript .function {
   margin: 0 auto;
   max-width: 96px;
   height: auto;
-  border: 2px solid #333;
+  border: none;
   padding: 2px;
 }
 .site-author-name {
@@ -1543,7 +1543,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9544ff;
+  background: #8e59e7;
 }
 .sidebar-nav {
   margin: 0 0 20px;
